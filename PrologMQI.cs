@@ -498,7 +498,7 @@ public class PrologThread
 
     public List<Tuple<string, string>> query_async_result(float? wait_timeout_seconds = null)
     {
-        StreamWriter file = new("output.txt", append: true);
+        // StreamWriter file = new("output.txt", append: true);
 
         string? timeoutString = wait_timeout_seconds.ToString();
         if (wait_timeout_seconds is null)
