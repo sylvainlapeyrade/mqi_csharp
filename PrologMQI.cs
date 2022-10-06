@@ -715,8 +715,8 @@ public class main
         Console.WriteLine("Query: mother(X, Y)\n");
         prologThread.query_async("mother(X, Y)", false);
 
-        bool test1_more_results = true;
-        while (test1_more_results)
+        bool test3_more_results = true;
+        while (test3_more_results)
         {
             List<Tuple<string, string>> test3_results = prologThread.query_async_result();
             for (int i = 0; i < test3_results.Count(); i++)
@@ -724,7 +724,7 @@ public class main
                 if (test3_results.ElementAt(i).Item1 == "null" && test3_results.ElementAt(i).Item2 == "null")
                 {
                     Console.WriteLine("No more results");
-                    test1_more_results = false;
+                    test3_more_results = false;
                 }
                 else
                     Console.WriteLine(test3_results.ElementAt(i).Item1 + " = " + test3_results.ElementAt(i).Item2);
@@ -757,6 +757,30 @@ public class main
         timer.Restart();
         Console.WriteLine(prologThread.query("time(father(bob))").ElementAt(0).Item1);
         Console.WriteLine("Time elapsed: {0}", timer.Elapsed);
+
+
+        /*************************************************************************
+        TEST 6 : Answers with arrays
+        *************************************************************************/
+        Console.WriteLine("\n\nTEST 6: Answers with arrays\n");
+        Console.WriteLine("Query: uncle([Col, Row], X, Y).");
+        prologThread.query_async("uncle([Col, Row], X, Y)", false);
+
+        bool test6_more_results = true;
+        while (test6_more_results)
+        {
+            List<Tuple<string, string>> test6_results = prologThread.query_async_result();
+            for (int i = 0; i < test6_results.Count(); i++)
+            {
+                if (test6_results.ElementAt(i).Item1 == "null" && test6_results.ElementAt(i).Item2 == "null")
+                {
+                    Console.WriteLine("No more results");
+                    test6_more_results = false;
+                }
+                else
+                    Console.WriteLine(test6_results.ElementAt(i).Item1 + " = " + test6_results.ElementAt(i).Item2);
+            }
+        }
 
     }
 }

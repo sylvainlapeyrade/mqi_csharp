@@ -3,5 +3,8 @@
 
 father(bob).
 
-mother(bob, paul).
-mother(kevin, thierry).
+mother(marie, paul).
+mother(mathilde, thierry).
+
+uncle([1, 2], paul, luke).
+uncle([3, 4], jean, pierre).
