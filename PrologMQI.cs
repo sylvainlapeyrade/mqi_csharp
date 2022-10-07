@@ -735,8 +735,8 @@ public class main
         TEST 4 : Queries with threads
         *************************************************************************/
         Console.WriteLine("\n\nTEST 4: Queries with threads\n");
-        Console.WriteLine("Query: prolog_thread1.query_async(sleep(2), father(paul))");
-        Console.WriteLine("Query: prolog_thread2.query_async(sleep(1), father(kevin))");
+        Console.WriteLine("Query: prolog_thread2.query_async(sleep(1), father(michael))");
+        Console.WriteLine("Query: prolog_thread1.query_async(father(kevin))");
         PrologThread prologThread1 = mqi.create_thread();
         PrologThread prologThread2 = mqi.create_thread();
         prologThread1.query_async("sleep(1), father(michael)", false);
