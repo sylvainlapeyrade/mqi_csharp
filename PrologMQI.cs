@@ -399,15 +399,15 @@ namespace PrologMachineQueryInterface
 
             // file.WriteLine("PrologMQI send: " + value);
 
-            byte[] valueBytes = Encoding.UTF8.GetBytes(value);
-            string utf8Value = Encoding.UTF8.GetString(valueBytes);
+            var valueBytes = Encoding.UTF8.GetBytes(value);
+            var utf8Value = Encoding.UTF8.GetString(valueBytes);
 
             // file.WriteLine("Utf8 Value: " + utf8value);
             
-            int messageLen = _serverProtocolMajor == 0 ? value.Length : utf8Value.Length;
+            var messageLen = _serverProtocolMajor == 0 ? value.Length : utf8Value.Length;
 
-            string msgHeader = messageLen.ToString() + ".\n";
-            byte[] messageLenBytes = Encoding.UTF8.GetBytes(msgHeader);
+            var msgHeader = messageLen.ToString() + ".\n";
+            var messageLenBytes = Encoding.UTF8.GetBytes(msgHeader);
 
             // file.Write("Message Len: ");
             // for (int i = 0; i < messageLenBytes.Length; i++)
@@ -418,11 +418,9 @@ namespace PrologMachineQueryInterface
             // for (int i = 0; i < valueBytes.Length; i++)
             // file.Write(valueBytes[i]);
 
-            if (_socket != null)
-            {
-                _socket.Send(messageLenBytes);
-                _socket.Send(valueBytes);
-            }
+            if (_socket == null) return;
+            _socket.Send(messageLenBytes);
+            _socket.Send(valueBytes);
         }
 
         public void Stop()
@@ -438,7 +436,7 @@ namespace PrologMachineQueryInterface
         }
 
 
-        public List<Tuple<string, string>> Query(string value, float? queryTimeoutSeconds = null)
+        public IEnumerable<string[]> Query(string value, float? queryTimeoutSeconds = null)
         {
             if (_socket is null)
                 Start();
@@ -446,9 +444,9 @@ namespace PrologMachineQueryInterface
             value = value.Trim();
             value = value.Trim('\n');
 
-            string timeoutString = queryTimeoutSeconds.ToString();
-            if (queryTimeoutSeconds is null)
-                timeoutString = "_";
+            var timeoutString = "_"; 
+            if (queryTimeoutSeconds is not null)
+                timeoutString = queryTimeoutSeconds.ToString();
 
             Send($"run(({value}), {timeoutString}).\n");
 
@@ -463,7 +461,7 @@ namespace PrologMachineQueryInterface
             value = value.Trim();
             value = value.Trim('\n');
 
-            string timeoutString = queryTimeoutSeconds.ToString();
+            var timeoutString = queryTimeoutSeconds.ToString();
             if (queryTimeoutSeconds is null)
                 timeoutString = "_";
 
@@ -478,11 +476,11 @@ namespace PrologMachineQueryInterface
         //     ReturnPrologResponse();
         // }
 
-        public List<Tuple<string, string>> QueryAsyncResult(float? waitTimeoutSeconds = null)
+        public List<string[]> QueryAsyncResult(float? waitTimeoutSeconds = null)
         {
             // StreamWriter file = new("output.txt", append: true);
 
-            string timeoutString = waitTimeoutSeconds.ToString();
+            var timeoutString = waitTimeoutSeconds.ToString();
             if (waitTimeoutSeconds is null)
                 timeoutString = "-1";
 
@@ -500,25 +498,25 @@ namespace PrologMachineQueryInterface
         //     _prologServer.ConnectionFailed = true;
         // }
 
-        private List<Tuple<string, string>> ReturnPrologResponse()
+        private List<string[]> ReturnPrologResponse()
         {
             // using StreamWriter file = new("output.txt", append: true);
-            string result = Receive();
+            var result = Receive();
 
             // file.WriteLine("\nReceive: " + result);
 
-            List<Tuple<string, string>> answerList = new();
+            List<string[]> answerList = new();
 
 
-            using JsonDocument doc = JsonDocument.Parse(result);
-            JsonElement jsonResult = doc.RootElement;
+            using var doc = JsonDocument.Parse(result);
+            var jsonResult = doc.RootElement;
 
             // file.WriteLine("Prolog Response:" + jsonResult);
 
             if (jsonResult.ToString() != "false" && jsonResult.GetProperty("functor").ToString() == "exception")
             {
                 if (jsonResult.GetProperty("args")[0].ToString() == "no_more_results")
-                    answerList.Add(new("null", "null"));
+                    answerList.Add(new [] {"null", "null"});
                 else if (jsonResult.GetProperty("args")[0].ToString() == "connection_failed")
                     _prologServer.ConnectionFailed = true;
                 // else if (!typeof(string).IsInstanceOfType(jsonResult.GetProperty("args")[0]))
@@ -541,24 +539,27 @@ namespace PrologMachineQueryInterface
             else
             {
                 if (jsonResult.ToString() == "false" || jsonResult.GetProperty("functor").ToString() == "false")
-                    return new List<Tuple<string, string>>() { new Tuple<string, string>("false", "null") };
+                    return new List<string[]> { new [] {"false", "null" } };
                 else if (jsonResult.ToString() == "true" || jsonResult.GetProperty("functor").ToString() == "true")
                 {
-                    for (int i = 0; i < jsonResult.GetProperty("args")[0].GetArrayLength(); i++)
+                    for (var i = 0; i < jsonResult.GetProperty("args")[0].GetArrayLength(); i++)
                     {
                         if (jsonResult.GetProperty("args")[0][i].GetArrayLength() == 0)
-                            answerList.Add(new Tuple<string, string>("true", "null"));
+                            answerList.Add( new [] {"true", "null" } );
                         else
                         {
-                            for (int j = 0; j < jsonResult.GetProperty("args")[0][i].GetArrayLength(); j++)
+                            for (var j = 0; j < jsonResult.GetProperty("args")[0][i].GetArrayLength(); j++)
                             {
-                                answerList.Add(new Tuple<string, string>(jsonResult.GetProperty("args")[0][i][j].GetProperty("args")[0].ToString(), jsonResult.GetProperty("args")[0][i][j].GetProperty("args")[1].ToString()));
+                                answerList.Add(new []{
+                                    jsonResult.GetProperty("args")[0][i][j].GetProperty("args")[0].ToString(),
+                                    jsonResult.GetProperty("args")[0][i][j].GetProperty("args")[1].ToString()
+                                });
                             }
                         }
                     }
 
-                    if (answerList.Count > 0 && answerList.ElementAt(0).Item1 == "true")
-                        answerList.Add(new Tuple<string, string>("true", "null"));
+                    if (answerList.Count > 0 && answerList.ElementAt(0)[0] == "true")
+                        answerList.Add(new [] { "true", "null" });
                     else
                         return answerList;
                 }
@@ -652,20 +653,20 @@ namespace PrologMachineQueryInterface
             *************************************************************************/
             Console.WriteLine("TEST 0 : Consult command and query after consult\n");
             Console.WriteLine("Query: consult(test).");
-            Console.WriteLine(prologThread.Query("consult(test)").ElementAt(0).Item1);
+            Console.WriteLine(prologThread.Query("consult(test)").ElementAt(0)[0]);
             Console.WriteLine("Query: father(bob).");
-            Console.WriteLine(prologThread.Query("father(bob)").ElementAt(0).Item1);
+            Console.WriteLine(prologThread.Query("father(bob)").ElementAt(0)[0]);
 
             /*************************************************************************
             TEST 1 : Query with only one answer (i.e. true ou false)
             *************************************************************************/
             Console.WriteLine("\n\nTEST 1 : Query with only one answer (i.e. true ou false)\n");
             Console.WriteLine("Query: assertz(father(michael)).");
-            Console.WriteLine(prologThread.Query("assertz(father(michael))").ElementAt(0).Item1);
+            Console.WriteLine(prologThread.Query("assertz(father(michael))").ElementAt(0)[0]);
             Console.WriteLine("\nQuery: father(michael).");
-            Console.WriteLine(prologThread.Query("father(michael)").ElementAt(0).Item1);
+            Console.WriteLine(prologThread.Query("father(michael)").ElementAt(0)[0]);
             Console.WriteLine("\nQuery: father(paul).");
-            Console.WriteLine(prologThread.Query("father(paul)").ElementAt(0).Item1);
+            Console.WriteLine(prologThread.Query("father(paul)").ElementAt(0)[0]);
 
             /*************************************************************************
             TEST 2 : Query with one atom and multiple answers
@@ -681,13 +682,13 @@ namespace PrologMachineQueryInterface
                 var test2Result = prologThread.QueryAsyncResult();
                 for (var i = 0; i < test2Result.Count; i++)
                 {
-                    if (test2Result.ElementAt(i).Item1 == "null" && test2Result.ElementAt(i).Item2 == "null")
+                    if (test2Result.ElementAt(i)[0] == "null" && test2Result.ElementAt(i)[1] == "null")
                     {
                         Console.WriteLine("No more results");
                         test2MoreResults = false;
                     }
                     else
-                        Console.WriteLine(test2Result.ElementAt(i).Item1 + " = " + test2Result.ElementAt(i).Item2);
+                        Console.WriteLine(test2Result.ElementAt(i)[0] + " = " + test2Result.ElementAt(i)[1]);
                 }
             }
 
@@ -704,13 +705,13 @@ namespace PrologMachineQueryInterface
                 var test3Results = prologThread.QueryAsyncResult();
                 for (var i = 0; i < test3Results.Count; i++)
                 {
-                    if (test3Results.ElementAt(i).Item1 == "null" && test3Results.ElementAt(i).Item2 == "null")
+                    if (test3Results.ElementAt(i)[0] == "null" && test3Results.ElementAt(i)[1] == "null")
                     {
                         Console.WriteLine("No more results");
                         test3MoreResults = false;
                     }
                     else
-                        Console.WriteLine(test3Results.ElementAt(i).Item1 + " = " + test3Results.ElementAt(i).Item2);
+                        Console.WriteLine(test3Results.ElementAt(i)[0] + " = " + test3Results.ElementAt(i)[1]);
                 }
             }
 
@@ -725,8 +726,8 @@ namespace PrologMachineQueryInterface
             prologThread1.QueryAsync("sleep(1), father(michael)", false);
             prologThread2.QueryAsync("father(kevin)", false);
 
-            Console.WriteLine("Thread 2: " + prologThread2.QueryAsyncResult().ElementAt(0).Item1);
-            Console.WriteLine("Thread 1: " + prologThread1.QueryAsyncResult().ElementAt(0).Item1);
+            Console.WriteLine("Thread 2: " + prologThread2.QueryAsyncResult().ElementAt(0)[0]);
+            Console.WriteLine("Thread 1: " + prologThread1.QueryAsyncResult().ElementAt(0)[0]);
 
             /*************************************************************************
             TEST 5 : Query response time
@@ -735,10 +736,10 @@ namespace PrologMachineQueryInterface
             Console.WriteLine("Query: time(father(bob)).");
             Stopwatch timer = new();
             timer.Start();
-            Console.WriteLine(prologThread.Query("time(father(bob))").ElementAt(0).Item1);
+            Console.WriteLine(prologThread.Query("time(father(bob))").ElementAt(0)[0]);
             Console.WriteLine("Time elapsed: {0}", timer.Elapsed);
             timer.Restart();
-            Console.WriteLine(prologThread.Query("time(father(bob))").ElementAt(0).Item1);
+            Console.WriteLine(prologThread.Query("time(father(bob))").ElementAt(0)[0]);
             Console.WriteLine("Time elapsed: {0}", timer.Elapsed);
 
 
@@ -755,13 +756,13 @@ namespace PrologMachineQueryInterface
                 var test6Results = prologThread.QueryAsyncResult();
                 for (var i = 0; i < test6Results.Count; i++)
                 {
-                    if (test6Results.ElementAt(i).Item1 == "null" && test6Results.ElementAt(i).Item2 == "null")
+                    if (test6Results.ElementAt(i)[0] == "null" && test6Results.ElementAt(i)[1] == "null")
                     {
                         Console.WriteLine("No more results");
                         test6MoreResults = false;
                     }
                     else
-                        Console.WriteLine(test6Results.ElementAt(i).Item1 + " = " + test6Results.ElementAt(i).Item2);
+                        Console.WriteLine(test6Results.ElementAt(i)[0] + " = " + test6Results.ElementAt(i)[1]);
                 }
             }
 
