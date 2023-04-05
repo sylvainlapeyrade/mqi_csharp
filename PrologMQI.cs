@@ -523,9 +523,8 @@ namespace PrologMachineQueryInterface
 
             if (jsonResult.ToString() != "false" && jsonResult.GetProperty("functor").ToString() == "exception")
             {
-                if (jsonResult.GetProperty("args")[0].ToString() == "no_more_results")
-                    answerList.Add(new [] {"null", "null"});
-                else if (jsonResult.GetProperty("args")[0].ToString() == "connection_failed")
+                if (jsonResult.GetProperty("args")[0].ToString() == "no_more_results") return null;
+                if (jsonResult.GetProperty("args")[0].ToString() == "connection_failed")
                     _prologServer.ConnectionFailed = true;
                 // else if (!typeof(string).IsInstanceOfType(jsonResult.GetProperty("args")[0]))
                 else throw new PrologLaunchError(jsonResult.ToString());
@@ -685,21 +684,20 @@ namespace PrologMachineQueryInterface
             Console.WriteLine("\n\nTEST 2 : Query with one argument and multiple answers\n");
             Console.WriteLine("Query: father(X)\n");
             prologThread.QueryAsync("father(X)", false);
-
-            var test2MoreResults = true;
             
-            while (test2MoreResults)
+            while (true)
             {
                 var test2Result = prologThread.QueryAsyncResult();
+
+                if (test2Result is null)
+                {
+                    Console.WriteLine("No more results");
+                    break;
+                }
+                
                 for (var i = 0; i < test2Result.Count; i++)
                 {
-                    if (test2Result.ElementAt(i)[0] == "null" && test2Result.ElementAt(i)[1] == "null")
-                    {
-                        Console.WriteLine("No more results");
-                        test2MoreResults = false;
-                    }
-                    else
-                        Console.WriteLine(test2Result.ElementAt(i)[0] + " = " + test2Result.ElementAt(i)[1]);
+                    Console.WriteLine(test2Result.ElementAt(i)[0] + " = " + test2Result.ElementAt(i)[1]);
                 }
             }
 
@@ -710,19 +708,19 @@ namespace PrologMachineQueryInterface
             Console.WriteLine("Query: mother(X, Y)\n");
             prologThread.QueryAsync("mother(X, Y)", false);
 
-            var test3MoreResults = true;
-            while (test3MoreResults)
+            while (true)
             {
-                var test3Results = prologThread.QueryAsyncResult();
-                for (var i = 0; i < test3Results.Count; i++)
+                var test3Result = prologThread.QueryAsyncResult();
+
+                if (test3Result is null)
                 {
-                    if (test3Results.ElementAt(i)[0] == "null" && test3Results.ElementAt(i)[1] == "null")
-                    {
-                        Console.WriteLine("No more results");
-                        test3MoreResults = false;
-                    }
-                    else
-                        Console.WriteLine(test3Results.ElementAt(i)[0] + " = " + test3Results.ElementAt(i)[1]);
+                    Console.WriteLine("No more results");
+                    break;
+                }
+                
+                for (var i = 0; i < test3Result.Count; i++)
+                {
+                    Console.WriteLine(test3Result.ElementAt(i)[0] + " = " + test3Result.ElementAt(i)[1]);
                 }
             }
 
@@ -761,19 +759,19 @@ namespace PrologMachineQueryInterface
             Console.WriteLine("Query: uncle([Col, Row], X, Y).");
             prologThread.QueryAsync("uncle([Col, Row], X, Y)", false);
 
-            var test6MoreResults = true;
-            while (test6MoreResults)
+            while (true)
             {
-                var test6Results = prologThread.QueryAsyncResult();
-                for (var i = 0; i < test6Results.Count; i++)
+                var test6Result = prologThread.QueryAsyncResult();
+
+                if (test6Result is null)
                 {
-                    if (test6Results.ElementAt(i)[0] == "null" && test6Results.ElementAt(i)[1] == "null")
-                    {
-                        Console.WriteLine("No more results");
-                        test6MoreResults = false;
-                    }
-                    else
-                        Console.WriteLine(test6Results.ElementAt(i)[0] + " = " + test6Results.ElementAt(i)[1]);
+                    Console.WriteLine("No more results");
+                    break;
+                }
+                
+                for (var i = 0; i < test6Result.Count; i++)
+                {
+                    Console.WriteLine(test6Result.ElementAt(i)[0] + " = " + test6Result.ElementAt(i)[1]);
                 }
             }
 
