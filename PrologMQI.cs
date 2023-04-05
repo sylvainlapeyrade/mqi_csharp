@@ -269,7 +269,7 @@ namespace PrologMachineQueryInterface
 
             Start();
         }
-
+        
         private void Start()
         {
             // using StreamWriter file = new("output.txt", append: true);
@@ -315,12 +315,12 @@ namespace PrologMachineQueryInterface
             if (connectCount == 3)
                 throw new SocketException((int)SocketError.ConnectionRefused);
 
+            // Send the password as first message
             Send(_prologServer.Password ?? "Null Password");
+            var result = Receive();
 
-            string result = Receive();
-
-            using JsonDocument doc = JsonDocument.Parse(result);
-            JsonElement jsonResult = doc.RootElement;
+            using var doc = JsonDocument.Parse(result);
+            var jsonResult = doc.RootElement;
 
 
             // file.WriteLine("\nPrologMQI received: " + jsonResult.GetProperty("functor"));
@@ -328,7 +328,6 @@ namespace PrologMachineQueryInterface
             if (jsonResult.GetProperty("functor").ToString() != "true")
                 throw new PrologLaunchError($"Failed to accept password: {jsonResult}");
             
-
             // _communicationThreadId = jsonResult.GetProperty("args")[0][0][0].GetProperty("args")[0].ToString();
             // _goalThreadId = jsonResult.GetProperty("args")[0][0][0].GetProperty("args")[1].ToString();
 
@@ -336,7 +335,7 @@ namespace PrologMachineQueryInterface
 
             if (jsonResult.GetProperty("args")[0][0].GetArrayLength() > 1)
             {
-                JsonElement versionTerm = jsonResult.GetProperty("args")[0][0][1];
+                var versionTerm = jsonResult.GetProperty("args")[0][0][1];
                 _serverProtocolMajor = versionTerm.GetProperty("args")[0].GetInt32();
                 _serverProtocolMinor = versionTerm.GetProperty("args")[1].GetInt32();
             }
@@ -423,24 +422,24 @@ namespace PrologMachineQueryInterface
             _socket.Send(valueBytes);
         }
 
-        public void Stop()
-        {
-            if (_socket == null) return;
-            if (!_prologServer.ConnectionFailed) return;
-
-            try
-            {
-                Send("close.\n");
-                ReturnPrologResponse();
-                
-                _socket.Close();
-            }
-            catch (Exception)
-            { // ignored
-            }
-
-            _socket = null;
-        }
+        // private void Stop()
+        // {
+        //     if (_socket == null) return;
+        //     if (!_prologServer.ConnectionFailed) return;
+        //
+        //     try
+        //     {
+        //         Send("close.\n");
+        //         ReturnPrologResponse();
+        //         
+        //         _socket.Close();
+        //     }
+        //     catch (Exception)
+        //     { // ignored
+        //     }
+        //
+        //     _socket = null;
+        // }
 
 
         public IEnumerable<string[]> Query(string value, float? queryTimeoutSeconds = null)
