@@ -80,23 +80,16 @@ namespace PrologMachineQueryInterface
         private readonly int? _pendingConnections;
         private readonly string _outputFile;
         public string UnixDomainSocket;
-        // private string _mqiTraces;
+        private readonly string _mqiTraces;
         private readonly bool _launchMqi;
         private readonly string _prologPath;
         private readonly string _prologPathArgs;
         public bool ConnectionFailed;
 
-        public PrologMqi(
-            bool launchMqi = true,
-            int? port = null!,
-            string password = null,
-            string unixDomainSocket = null,
-            float? queryTimeoutSeconds = null,
-            int? pendingConnectionCount = null,
-            string outputFileName = null,
-            // string mqiTraces = null,
-            string prologPath = null,
-            string prologPathArgs = null)
+        public PrologMqi(bool launchMqi = true, int? port = null!, string password = null, string unixDomainSocket = null,
+            float? queryTimeoutSeconds = null, int? pendingConnectionCount = null, string outputFileName = null,
+            string prologPath = null, string prologPathArgs = null, string mqiTraces = null
+            )
         {
             Port = port;
             Password = password;
@@ -105,15 +98,15 @@ namespace PrologMachineQueryInterface
             _pendingConnections = pendingConnectionCount;
             _outputFile = outputFileName;
             UnixDomainSocket = unixDomainSocket;
-            // _mqiTraces = mqiTraces;
+            _mqiTraces = mqiTraces;
             _launchMqi = launchMqi;
             _prologPath = prologPath;
             _prologPathArgs = prologPathArgs;
 
             ConnectionFailed = false;
 
-            OperatingSystem os = Environment.OSVersion;
-            PlatformID pid = os.Platform;
+            var os = Environment.OSVersion;
+            var pid = os.Platform;
 
             // Ensure arguments are valid
             if (UnixDomainSocket != null)
@@ -231,6 +224,9 @@ namespace PrologMachineQueryInterface
                 // file.WriteLine("Prolog MQI password: " + _password);
             }
 
+            if (_mqiTraces is null) return;
+            var prologThread = CreateThread();
+            prologThread.Query("debug(mqi({self._mqi_traces}))");
         }
 
 
@@ -241,7 +237,7 @@ namespace PrologMachineQueryInterface
 
         public int? ProcessId()
         {
-            return _process?.Id;
+            return _process?.Id; // null propagation operator
         }
     }
 
@@ -481,11 +477,11 @@ namespace PrologMachineQueryInterface
             ReturnPrologResponse();
         }
 
-        // public void CancelQueryAsync()
-        // {
-        //     Send("cancel_async.\n");
-        //     ReturnPrologResponse();
-        // }
+        public void CancelQueryAsync()
+        {
+            Send("cancel_async.\n");
+            ReturnPrologResponse();
+        }
 
         public List<string[]> QueryAsyncResult(float? waitTimeoutSeconds = null)
         {
@@ -502,12 +498,12 @@ namespace PrologMachineQueryInterface
             return ReturnPrologResponse();
         }
 
-        // public void HaltServer()
-        // {
-        //     Send("quit.\n");
-        //     ReturnPrologResponse();
-        //     _prologServer.ConnectionFailed = true;
-        // }
+        public void HaltServer()
+        {
+            Send("quit.\n");
+            ReturnPrologResponse();
+            _prologServer.ConnectionFailed = true;
+        }
 
         private List<string[]> ReturnPrologResponse()
         {
