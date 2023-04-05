@@ -137,12 +137,12 @@ namespace PrologMachineQueryInterface
             // File.WriteAllText("output.txt", string.Empty); // Clear output file
             // using StreamWriter file = new("output.txt", append: true);
 
-            string swiplPath = "swipl";
+            var swiplPath = "swipl";
 
             if (_prologPath != null)
                 swiplPath = Path.Join(_prologPath, "swipl");
 
-            string launchArgs = "";
+            var launchArgs = "";
 
             if (_prologPathArgs != null)
                 launchArgs += _prologPathArgs;
@@ -166,7 +166,7 @@ namespace PrologMachineQueryInterface
                 launchArgs += " --password=" + Password;
             if (_outputFile != null)
             {
-                string finalPath = PrologFunctions.CreatePosixPath(_outputFile);
+                var finalPath = PrologFunctions.CreatePosixPath(_outputFile);
                 launchArgs += " --write_output_to_file =" + _outputFile;
                 Console.WriteLine("Writing all Prolog output to file: " + finalPath);
             }
@@ -200,31 +200,32 @@ namespace PrologMachineQueryInterface
 
             if (UnixDomainSocket is null)
             {
-                string portString = _process.StandardOutput.ReadLine();
+                var portString = _process.StandardOutput.ReadLine();
 
                 if (portString == "")
                     throw new PrologLaunchError("no port found in stdout");
-                else if (portString != null)
+                if (portString != null)
                 {
-                    string serverPortString = portString.Trim('\n');
-                    Port = Int32.Parse(serverPortString);
+                    var serverPortString = portString.Trim('\n');
+                    Port = int.Parse(serverPortString);
                     // file.WriteLine("Prolog MQI port: " + _port);
                 }
             }
             else
             {
-                string domainSocket = _process.StandardOutput.ReadLine();
+                var domainSocket = _process.StandardOutput.ReadLine();
 
                 if (domainSocket == "")
                     throw new PrologLaunchError("no Unix Domain Socket found in stdout");
-                else if (domainSocket != null)
+                if (domainSocket != null)
                     UnixDomainSocket = domainSocket.Trim('\n');
             }
 
-            string passwordString = _process.StandardOutput.ReadLine();
+            var passwordString = _process.StandardOutput.ReadLine();
             if (passwordString == "")
                 throw new PrologLaunchError("no password found in stdout");
-            else if (passwordString != null)
+            
+            if (passwordString != null)
             {
                 Password = passwordString.Trim('\n');
                 // file.WriteLine("Prolog MQI password: " + _password);
@@ -300,7 +301,7 @@ namespace PrologMachineQueryInterface
 
             // file.WriteLine("PrologMQI connecting to Prolog at: " + prologAddress.First().Key + ":" + prologAddress.First().Value);
 
-            int connectCount = 0;
+            var connectCount = 0;
             while (connectCount < 3)
             {
                 try
@@ -356,30 +357,33 @@ namespace PrologMachineQueryInterface
 
         private void CheckProtocolVersion()
         {
-            int requiredServerMajor = 1;
-            int requiredServerMinor = 0;
+            const int requiredServerMajor = 1;
+            const int requiredServerMinor = 0;
 
-            if (_serverProtocolMajor == 0 && _serverProtocolMinor == 0)
-                return;
-
-            if (_serverProtocolMajor == requiredServerMajor && _serverProtocolMinor == requiredServerMinor)
-                return;
-
-            throw new PrologLaunchError($"version of swiplserver requires MQI major version {requiredServerMajor} and minor version >= {requiredServerMinor}. The server is running MQI '{_serverProtocolMajor}.{_serverProtocolMinor}");
+            switch (_serverProtocolMajor)
+            {
+                case 0 when _serverProtocolMinor == 0:
+                case requiredServerMajor when _serverProtocolMinor == requiredServerMinor:
+                    return;
+                default:
+                    throw new PrologLaunchError($"version of swiplserver requires MQI major version" +
+                                                $" {requiredServerMajor} and minor version >= {requiredServerMinor}." +
+                                                $" The server is running MQI '{_serverProtocolMajor}.{_serverProtocolMinor}");
+            }
         }
 
         private string Receive()
         {
             // using StreamWriter file = new("output.txt", append: true);
 
-            byte[] buffer = new byte[4096];
+            var buffer = new byte[4096];
 
             if (_socket is null)
                 throw new NullReferenceException("Socket is null");
 
-            int iRx = _socket.Receive(buffer);
+            var iRx = _socket.Receive(buffer);
 
-            string msg = Encoding.ASCII.GetString(buffer, 0, iRx);
+            var msg = Encoding.ASCII.GetString(buffer, 0, iRx);
 
             // file.WriteLine("\nReceived: " + msg);
 
@@ -425,14 +429,21 @@ namespace PrologMachineQueryInterface
 
         public void Stop()
         {
-            if (_socket != null)
+            if (_socket == null) return;
+            if (!_prologServer.ConnectionFailed) return;
+
+            try
             {
-                if (_prologServer.ConnectionFailed)
-                {
-                    Send("close.\n");
-                    ReturnPrologResponse();
-                }
+                Send("close.\n");
+                ReturnPrologResponse();
+                
+                _socket.Close();
             }
+            catch (Exception)
+            { // ignored
+            }
+
+            _socket = null;
         }
 
 
@@ -540,29 +551,30 @@ namespace PrologMachineQueryInterface
             {
                 if (jsonResult.ToString() == "false" || jsonResult.GetProperty("functor").ToString() == "false")
                     return new List<string[]> { new [] {"false", "null" } };
-                else if (jsonResult.ToString() == "true" || jsonResult.GetProperty("functor").ToString() == "true")
+
+                if (jsonResult.ToString() != "true" && jsonResult.GetProperty("functor").ToString() != "true")
+                    return answerList;
+                
+                for (var i = 0; i < jsonResult.GetProperty("args")[0].GetArrayLength(); i++)
                 {
-                    for (var i = 0; i < jsonResult.GetProperty("args")[0].GetArrayLength(); i++)
+                    if (jsonResult.GetProperty("args")[0][i].GetArrayLength() == 0)
+                        answerList.Add( new [] {"true", "null" } );
+                    else
                     {
-                        if (jsonResult.GetProperty("args")[0][i].GetArrayLength() == 0)
-                            answerList.Add( new [] {"true", "null" } );
-                        else
+                        for (var j = 0; j < jsonResult.GetProperty("args")[0][i].GetArrayLength(); j++)
                         {
-                            for (var j = 0; j < jsonResult.GetProperty("args")[0][i].GetArrayLength(); j++)
-                            {
-                                answerList.Add(new []{
-                                    jsonResult.GetProperty("args")[0][i][j].GetProperty("args")[0].ToString(),
-                                    jsonResult.GetProperty("args")[0][i][j].GetProperty("args")[1].ToString()
-                                });
-                            }
+                            answerList.Add(new []{
+                                jsonResult.GetProperty("args")[0][i][j].GetProperty("args")[0].ToString(),
+                                jsonResult.GetProperty("args")[0][i][j].GetProperty("args")[1].ToString()
+                            });
                         }
                     }
-
-                    if (answerList.Count > 0 && answerList.ElementAt(0)[0] == "true")
-                        answerList.Add(new [] { "true", "null" });
-                    else
-                        return answerList;
                 }
+
+                if (answerList.Count > 0 && answerList.ElementAt(0)[0] == "true")
+                    answerList.Add(new [] { "true", "null" });
+                else
+                    return answerList;
             }
             return answerList;
         }
