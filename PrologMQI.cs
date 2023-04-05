@@ -187,7 +187,8 @@ namespace PrologMachineQueryInterface
             }
             catch (FileNotFoundException)
             {
-                throw new PrologLaunchError("The SWI Prolog executable 'swipl' could not be found on the system path, please add it.");
+                throw new PrologLaunchError("The SWI Prolog executable 'swipl'" +
+                                            " could not be found on the system path, please add it.");
             }
 
 
@@ -295,7 +296,8 @@ namespace PrologMachineQueryInterface
                 _socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             }
 
-            // file.WriteLine("PrologMQI connecting to Prolog at: " + prologAddress.First().Key + ":" + prologAddress.First().Value);
+            // file.WriteLine("PrologMQI connecting to Prolog at: " +
+            // prologAddress.First().Key + ":" + prologAddress.First().Value);
 
             var connectCount = 0;
             while (connectCount < 3)
@@ -590,7 +592,8 @@ namespace PrologMachineQueryInterface
 
         private static bool IsPrologVariable(JsonElement jsonTerm)
         {
-            return jsonTerm.GetProperty("args")[0].ToString() == "test" || jsonTerm[0].GetProperty("args")[0].ToString() == "_";
+            return jsonTerm.GetProperty("args")[0].ToString() == "test" ||
+                   jsonTerm[0].GetProperty("args")[0].ToString() == "_";
         }
 
         private static bool IsPrologAtom(JsonElement jsonTerm)
@@ -634,7 +637,8 @@ namespace PrologMachineQueryInterface
 
         // def json_to_prolog(json_term):
         //     """
-        //     Convert json_term from the Prolog JSON format to a string that represents the term in the Prolog language. See `PrologThread.query` for documentation on the Prolog JSON format.
+        //     Convert json_term from the Prolog JSON format to a string that represents
+        //      the term in the Prolog language. See `PrologThread.query` for documentation on the Prolog JSON format.
         //     """
         //     if is_prolog_functor(json_term):
         //         argsString = [json_to_prolog(item) for item in prolog_args(json_term)]
