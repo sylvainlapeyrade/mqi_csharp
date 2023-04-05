@@ -1,0 +1,1614 @@
+Unix 12.6.0
+Unix
+Prolog MQI launching swipl with args: --quiet -g mqi_start -t halt -- --write_connection_values=true
+Prolog MQI port: 65248
+Prolog MQI password: 163660568756129376254041626768598884981
+Entering PrologThread: 67362
+PrologMQI connecting to Prolog at: 127.0.0.1:65248
+
+PrologMQI received: true
+PrologMQI server protocol: mqi1_conn1_comm mqi1_conn1_goal
+PrologMQI server protocol: 1 0
+2495450545554565357565656525756494610
+Received: 190.
+{
+  "args": [
+    [
+      [
+	{
+	  "args": ["mqi1_conn1_comm", "mqi1_conn1_goal" ],
+	  "functor":"threads"
+	},
+	{"args": [1, 0 ], "functor":"version"}
+      ]
+    ]
+  ],
+  "functor":"true"
+}
+
+PrologMQI send: run((assertz(father(michael))), _).
+
+Utf8 Value: run((assertz(father(michael))), _).
+
+Message Len: 51544610
+Message Content: 1141171104040971151151011141161224010297116104101114401091059910497101108414141443295414610
+Receive: 
+{"args": [ [ [] ] ], "functor":"true"}
+
+Prolog Response:{"args": [ [ [] ] ], "functor":"true"}
+PrologMQI send: run((father(michael)), _).
+
+Utf8 Value: run((father(michael)), _).
+
+Message Len: 50554610
+Message Content: 1141171104040102971161041011144010910599104971011084141443295414610
+Receive: 
+{"args": [ [ [] ] ], "functor":"true"}
+
+Prolog Response:{"args": [ [ [] ] ], "functor":"true"}
+PrologMQI send: run((father(paul)), _).
+
+Utf8 Value: run((father(paul)), _).
+
+Message Len: 50524610
+Message Content: 11411711040401029711610410111440112971171084141443295414610
+Receive: 
+"false"
+
+Prolog Response:false
+PrologMQI send: run_async((member(X, [first, second, third])), _, false).
+
+Utf8 Value: run_async((member(X, [first, second, third])), _, false).
+
+Message Len: 53564610
+Message Content: 11411711095971151211109940401091011099810111440884432911021051141151164432115101991111101004432116104105114100934141443295443210297108115101414610
+Receive: 
+{"args": [ [ [] ] ], "functor":"true"}
+
+Prolog Response:{"args": [ [ [] ] ], "functor":"true"}
+PrologMQI send: async_result(-1).
+
+Utf8 Value: async_result(-1).
+
+Message Len: 49564610
+Message Content: 971151211109995114101115117108116404549414610
+Receive: 
+{
+  "args": [ [ [ {"args": ["X", "first" ], "functor":"="} ] ] ],
+  "functor":"true"
+}
+
+Prolog Response:{
+  "args": [ [ [ {"args": ["X", "first" ], "functor":"="} ] ] ],
+  "functor":"true"
+}
+PrologMQI send: async_result(-1).
+
+Utf8 Value: async_result(-1).
+
+Message Len: 49564610
+Message Content: 971151211109995114101115117108116404549414610
+Receive: 
+{
+  "args": [ [ [ {"args": ["X", "second" ], "functor":"="} ] ] ],
+  "functor":"true"
+}
+
+Prolog Response:{
+  "args": [ [ [ {"args": ["X", "second" ], "functor":"="} ] ] ],
+  "functor":"true"
+}
+PrologMQI send: async_result(-1).
+
+Utf8 Value: async_result(-1).
+
+Message Len: 49564610
+Message Content: 971151211109995114101115117108116404549414610
+Receive: 
+{
+  "args": [ [ [ {"args": ["X", "third" ], "functor":"="} ] ] ],
+  "functor":"true"
+}
+
+Prolog Response:{
+  "args": [ [ [ {"args": ["X", "third" ], "functor":"="} ] ] ],
+  "functor":"true"
+}
+PrologMQI send: async_result(-1).
+
+Utf8 Value: async_result(-1).
+
+Message Len: 49564610
+Message Content: 971151211109995114101115117108116404549414610
+Receive: 
+{"args": ["no_more_results" ], "functor":"exception"}
+
+Prolog Response:{"args": ["no_more_results" ], "functor":"exception"}
+Prolog MQI launching swipl with args: --quiet -g mqi_start -t halt -- --write_connection_values=true
+Prolog MQI port: 61376
+Prolog MQI password: 11372000818417355312673948515015087357
+Entering PrologThread: 17713
+PrologMQI connecting to Prolog at: 127.0.0.1:61376
+
+PrologMQI received: true
+PrologMQI server protocol: mqi1_conn1_comm mqi1_conn1_goal
+PrologMQI server protocol: 1 0
+nn1_goal" ],
+	  "functor":"threads"
+	},
+	{"args": [1, 0 ], "functor":"version"}
+      ]
+    ]
+  ],
+  "functor":"true"
+}
+
+PrologMQI send: run((consult(test)), _).
+
+Utf8 Value: run((consult(test)), _).
+
+
+Receive: 
+{"args": [ [ [] ] ], "functor":"true"}
+
+Prolog Response:{"args": [ [ [] ] ], "functor":"true"}
+PrologMQI send: run((father(bob)), _).
+
+Utf8 Value: run((father(bob)), _).
+
+
+Receive: 
+{"args": [ [ [] ] ], "functor":"true"}
+
+Prolog Response:{"args": [ [ [] ] ], "functor":"true"}
+PrologMQI send: run((assertz(father(michael))), _).
+
+Utf8 Value: run((assertz(father(michael))), _).
+
+
+Receive: 
+{"args": [ [ [] ] ], "functor":"true"}
+
+Prolog Response:{"args": [ [ [] ] ], "functor":"true"}
+PrologMQI send: run((father(michael)), _).
+
+Utf8 Value: run((father(michael)), _).
+
+
+Receive: 
+{"args": [ [ [] ] ], "functor":"true"}
+
+Prolog Response:{"args": [ [ [] ] ], "functor":"true"}
+PrologMQI send: run((father(paul)), _).
+
+Utf8 Value: run((father(paul)), _).
+
+
+Receive: 
+"false"
+
+Prolog Response:false
+PrologMQI send: run_async((mother(X, Y)), _, false).
+
+Utf8 Value: run_async((mother(X, Y)), _, false).
+
+
+Receive: 
+{"args": [ [ [] ] ], "functor":"true"}
+
+Prolog Response:{"args": [ [ [] ] ], "functor":"true"}
+PrologMQI send: async_result(-1).
+
+Utf8 Value: async_result(-1).
+
+
+Receive: 
+{
+  "args": [
+    [
+      [
+	{"args": ["X", "bob" ], "functor":"="},
+	{"args": ["Y", "paul" ], "functor":"="}
+      ]
+    ]
+  ],
+  "functor":"true"
+}
+
+Prolog Response:{
+  "args": [
+    [
+      [
+	{"args": ["X", "bob" ], "functor":"="},
+	{"args": ["Y", "paul" ], "functor":"="}
+      ]
+    ]
+  ],
+  "functor":"true"
+}
+PrologMQI send: async_result(-1).
+
+Utf8 Value: async_result(-1).
+
+
+Receive: 
+{
+  "args": [
+    [
+      [
+	{"args": ["X", "kevin" ], "functor":"="},
+	{"args": ["Y", "thierry" ], "functor":"="}
+      ]
+    ]
+  ],
+  "functor":"true"
+}
+
+Prolog Response:{
+  "args": [
+    [
+      [
+	{"args": ["X", "kevin" ], "functor":"="},
+	{"args": ["Y", "thierry" ], "functor":"="}
+      ]
+    ]
+  ],
+  "functor":"true"
+}
+PrologMQI send: async_result(-1).
+
+Utf8 Value: async_result(-1).
+
+
+Receive: 
+{"args": ["no_more_results" ], "functor":"exception"}
+
+Prolog Response:{"args": ["no_more_results" ], "functor":"exception"}
+PrologMQI send: run_async((father(X)), _, false).
+
+Utf8 Value: run_async((father(X)), _, false).
+
+
+Receive: 
+{"args": [ [ [] ] ], "functor":"true"}
+
+Prolog Response:{"args": [ [ [] ] ], "functor":"true"}
+PrologMQI send: async_result(-1).
+
+Utf8 Value: async_result(-1).
+
+
+Receive: 
+{
+  "args": [ [ [ {"args": ["X", "bob" ], "functor":"="} ] ] ],
+  "functor":"true"
+}
+
+Prolog Response:{
+  "args": [ [ [ {"args": ["X", "bob" ], "functor":"="} ] ] ],
+  "functor":"true"
+}
+PrologMQI send: async_result(-1).
+
+Utf8 Value: async_result(-1).
+
+
+Receive: 
+{
+  "args": [ [ [ {"args": ["X", "michael" ], "functor":"="} ] ] ],
+  "functor":"true"
+}
+
+Prolog Response:{
+  "args": [ [ [ {"args": ["X", "michael" ], "functor":"="} ] ] ],
+  "functor":"true"
+}
+PrologMQI send: async_result(-1).
+
+Utf8 Value: async_result(-1).
+
+
+Receive: 
+{"args": ["no_more_results" ], "functor":"exception"}
+
+Prolog Response:{"args": ["no_more_results" ], "functor":"exception"}
+PrologMQI send: async_result(-1).
+
+Utf8 Value: async_result(-1).
+
+
+Received: 47.
+{"args": ["no_query" ], "functor":"exception"}
+
+Prolog MQI launching swipl with args: --quiet -g mqi_start -t halt -- --write_connection_values=true
+Prolog MQI port: 62064
+Prolog MQI password: 266305053891885627574295575127110246103
+Entering PrologThread: 22076
+PrologMQI connecting to Prolog at: 127.0.0.1:62064
+
+PrologMQI received: true
+PrologMQI server protocol: mqi1_conn1_comm mqi1_conn1_goal
+PrologMQI server protocol: 1 0
+conn1_goal" ],
+	  "functor":"threads"
+	},
+	{"args": [1, 0 ], "functor":"version"}
+      ]
+    ]
+  ],
+  "functor":"true"
+}
+
+PrologMQI send: run((consult(test)), _).
+
+Utf8 Value: run((consult(test)), _).
+
+
+Receive: 
+{"args": [ [ [] ] ], "functor":"true"}
+
+Prolog Response:{"args": [ [ [] ] ], "functor":"true"}
+PrologMQI send: run((father(bob)), _).
+
+Utf8 Value: run((father(bob)), _).
+
+
+Receive: 
+{"args": [ [ [] ] ], "functor":"true"}
+
+Prolog Response:{"args": [ [ [] ] ], "functor":"true"}
+PrologMQI send: run((assertz(father(michael))), _).
+
+Utf8 Value: run((assertz(father(michael))), _).
+
+
+Receive: 
+{"args": [ [ [] ] ], "functor":"true"}
+
+Prolog Response:{"args": [ [ [] ] ], "functor":"true"}
+PrologMQI send: run((father(michael)), _).
+
+Utf8 Value: run((father(michael)), _).
+
+
+Receive: 
+{"args": [ [ [] ] ], "functor":"true"}
+
+Prolog Response:{"args": [ [ [] ] ], "functor":"true"}
+PrologMQI send: run((father(paul)), _).
+
+Utf8 Value: run((father(paul)), _).
+
+
+Receive: 
+"false"
+
+Prolog Response:false
+PrologMQI send: run_async((mother(X, Y)), _, false).
+
+Utf8 Value: run_async((mother(X, Y)), _, false).
+
+
+Receive: 
+{"args": [ [ [] ] ], "functor":"true"}
+
+Prolog Response:{"args": [ [ [] ] ], "functor":"true"}
+PrologMQI send: async_result(-1).
+
+Utf8 Value: async_result(-1).
+
+
+Receive: 
+{
+  "args": [
+    [
+      [
+	{"args": ["X", "bob" ], "functor":"="},
+	{"args": ["Y", "paul" ], "functor":"="}
+      ]
+    ]
+  ],
+  "functor":"true"
+}
+
+Prolog Response:{
+  "args": [
+    [
+      [
+	{"args": ["X", "bob" ], "functor":"="},
+	{"args": ["Y", "paul" ], "functor":"="}
+      ]
+    ]
+  ],
+  "functor":"true"
+}
+PrologMQI send: async_result(-1).
+
+Utf8 Value: async_result(-1).
+
+
+Receive: 
+{
+  "args": [
+    [
+      [
+	{"args": ["X", "kevin" ], "functor":"="},
+	{"args": ["Y", "thierry" ], "functor":"="}
+      ]
+    ]
+  ],
+  "functor":"true"
+}
+
+Prolog Response:{
+  "args": [
+    [
+      [
+	{"args": ["X", "kevin" ], "functor":"="},
+	{"args": ["Y", "thierry" ], "functor":"="}
+      ]
+    ]
+  ],
+  "functor":"true"
+}
+PrologMQI send: async_result(-1).
+
+Utf8 Value: async_result(-1).
+
+
+Receive: 
+{"args": ["no_more_results" ], "functor":"exception"}
+
+Prolog Response:{"args": ["no_more_results" ], "functor":"exception"}
+PrologMQI send: run_async((father(X)), _, false).
+
+Utf8 Value: run_async((father(X)), _, false).
+
+
+Receive: 
+{"args": [ [ [] ] ], "functor":"true"}
+
+Prolog Response:{"args": [ [ [] ] ], "functor":"true"}
+PrologMQI send: async_result(-1).
+
+Utf8 Value: async_result(-1).
+
+
+Receive: 
+{
+  "args": [ [ [ {"args": ["X", "bob" ], "functor":"="} ] ] ],
+  "functor":"true"
+}
+
+Prolog Response:{
+  "args": [ [ [ {"args": ["X", "bob" ], "functor":"="} ] ] ],
+  "functor":"true"
+}
+PrologMQI send: async_result(-1).
+
+Utf8 Value: async_result(-1).
+
+
+Receive: 
+{
+  "args": [ [ [ {"args": ["X", "michael" ], "functor":"="} ] ] ],
+  "functor":"true"
+}
+
+Prolog Response:{
+  "args": [ [ [ {"args": ["X", "michael" ], "functor":"="} ] ] ],
+  "functor":"true"
+}
+PrologMQI send: async_result(-1).
+
+Utf8 Value: async_result(-1).
+
+
+Receive: 
+{"args": ["no_more_results" ], "functor":"exception"}
+
+Prolog Response:{"args": ["no_more_results" ], "functor":"exception"}
+PrologMQI send: async_result(-1).
+
+Utf8 Value: async_result(-1).
+
+
+Received: 47.
+{"args": ["no_query" ], "functor":"exception"}
+
+Prolog MQI launching swipl with args: --quiet -g mqi_start -t halt -- --write_connection_values=true
+Prolog MQI port: 62496
+Prolog MQI password: 64542268314963043930410624316678431680
+Entering PrologThread: 22232
+PrologMQI connecting to Prolog at: 127.0.0.1:62496
+
+PrologMQI received: true
+PrologMQI server protocol: mqi1_conn1_comm mqi1_conn1_goal
+PrologMQI server protocol: 1 0
+nn1_goal" ],
+	  "functor":"threads"
+	},
+	{"args": [1, 0 ], "functor":"version"}
+      ]
+    ]
+  ],
+  "functor":"true"
+}
+
+PrologMQI send: run((consult(test)), _).
+
+Utf8 Value: run((consult(test)), _).
+
+
+Receive: 
+{"args": [ [ [] ] ], "functor":"true"}
+
+Prolog Response:{"args": [ [ [] ] ], "functor":"true"}
+PrologMQI send: run((father(bob)), _).
+
+Utf8 Value: run((father(bob)), _).
+
+
+Receive: 
+{"args": [ [ [] ] ], "functor":"true"}
+
+Prolog Response:{"args": [ [ [] ] ], "functor":"true"}
+PrologMQI send: run((assertz(father(michael))), _).
+
+Utf8 Value: run((assertz(father(michael))), _).
+
+
+Receive: 
+{"args": [ [ [] ] ], "functor":"true"}
+
+Prolog Response:{"args": [ [ [] ] ], "functor":"true"}
+PrologMQI send: run((father(michael)), _).
+
+Utf8 Value: run((father(michael)), _).
+
+
+Receive: 
+{"args": [ [ [] ] ], "functor":"true"}
+
+Prolog Response:{"args": [ [ [] ] ], "functor":"true"}
+PrologMQI send: run((father(paul)), _).
+
+Utf8 Value: run((father(paul)), _).
+
+
+Receive: 
+"false"
+
+Prolog Response:false
+PrologMQI send: run_async((mother(X, Y)), _, false).
+
+Utf8 Value: run_async((mother(X, Y)), _, false).
+
+
+Receive: 
+{"args": [ [ [] ] ], "functor":"true"}
+
+Prolog Response:{"args": [ [ [] ] ], "functor":"true"}
+PrologMQI send: async_result(-1).
+
+Utf8 Value: async_result(-1).
+
+
+Receive: 
+{
+  "args": [
+    [
+      [
+	{"args": ["X", "bob" ], "functor":"="},
+	{"args": ["Y", "paul" ], "functor":"="}
+      ]
+    ]
+  ],
+  "functor":"true"
+}
+
+Prolog Response:{
+  "args": [
+    [
+      [
+	{"args": ["X", "bob" ], "functor":"="},
+	{"args": ["Y", "paul" ], "functor":"="}
+      ]
+    ]
+  ],
+  "functor":"true"
+}
+PrologMQI send: async_result(-1).
+
+Utf8 Value: async_result(-1).
+
+
+Receive: 
+{
+  "args": [
+    [
+      [
+	{"args": ["X", "kevin" ], "functor":"="},
+	{"args": ["Y", "thierry" ], "functor":"="}
+      ]
+    ]
+  ],
+  "functor":"true"
+}
+
+Prolog Response:{
+  "args": [
+    [
+      [
+	{"args": ["X", "kevin" ], "functor":"="},
+	{"args": ["Y", "thierry" ], "functor":"="}
+      ]
+    ]
+  ],
+  "functor":"true"
+}
+PrologMQI send: async_result(-1).
+
+Utf8 Value: async_result(-1).
+
+
+Receive: 
+{"args": ["no_more_results" ], "functor":"exception"}
+
+Prolog Response:{"args": ["no_more_results" ], "functor":"exception"}
+PrologMQI send: run_async((father(X)), _, false).
+
+Utf8 Value: run_async((father(X)), _, false).
+
+
+Receive: 
+{"args": [ [ [] ] ], "functor":"true"}
+
+Prolog Response:{"args": [ [ [] ] ], "functor":"true"}
+PrologMQI send: async_result(-1).
+
+Utf8 Value: async_result(-1).
+
+
+Receive: 
+{
+  "args": [ [ [ {"args": ["X", "bob" ], "functor":"="} ] ] ],
+  "functor":"true"
+}
+
+Prolog Response:{
+  "args": [ [ [ {"args": ["X", "bob" ], "functor":"="} ] ] ],
+  "functor":"true"
+}
+PrologMQI send: async_result(-1).
+
+Utf8 Value: async_result(-1).
+
+
+Receive: 
+{
+  "args": [ [ [ {"args": ["X", "michael" ], "functor":"="} ] ] ],
+  "functor":"true"
+}
+
+Prolog Response:{
+  "args": [ [ [ {"args": ["X", "michael" ], "functor":"="} ] ] ],
+  "functor":"true"
+}
+PrologMQI send: async_result(-1).
+
+Utf8 Value: async_result(-1).
+
+
+Receive: 
+{"args": ["no_more_results" ], "functor":"exception"}
+
+Prolog Response:{"args": ["no_more_results" ], "functor":"exception"}
+Entering PrologThread: 22232
+PrologMQI connecting to Prolog at: 127.0.0.1:62496
+
+PrologMQI received: true
+PrologMQI server protocol: mqi1_conn2_comm mqi1_conn2_goal
+PrologMQI server protocol: 1 0
+nn2_goal" ],
+	  "functor":"threads"
+	},
+	{"args": [1, 0 ], "functor":"version"}
+      ]
+    ]
+  ],
+  "functor":"true"
+}
+
+Entering PrologThread: 22232
+PrologMQI connecting to Prolog at: 127.0.0.1:62496
+
+PrologMQI received: true
+PrologMQI server protocol: mqi1_conn3_comm mqi1_conn3_goal
+PrologMQI server protocol: 1 0
+nn3_goal" ],
+	  "functor":"threads"
+	},
+	{"args": [1, 0 ], "functor":"version"}
+      ]
+    ]
+  ],
+  "functor":"true"
+}
+
+PrologMQI send: run_async((sleep(1), father(michael)), _, false).
+
+Utf8 Value: run_async((sleep(1), father(michael)), _, false).
+
+
+Receive: 
+{"args": [ [ [] ] ], "functor":"true"}
+
+Prolog Response:{"args": [ [ [] ] ], "functor":"true"}
+PrologMQI send: run_async((father(kevin)), _, false).
+
+Utf8 Value: run_async((father(kevin)), _, false).
+
+
+Receive: 
+{"args": [ [ [] ] ], "functor":"true"}
+
+Prolog Response:{"args": [ [ [] ] ], "functor":"true"}
+PrologMQI send: async_result(-1).
+
+Utf8 Value: async_result(-1).
+
+
+Receive: 
+"false"
+
+Prolog Response:false
+PrologMQI send: async_result(-1).
+
+Utf8 Value: async_result(-1).
+
+
+Receive: 
+{"args": [ [ [] ] ], "functor":"true"}
+
+Prolog Response:{"args": [ [ [] ] ], "functor":"true"}
+PrologMQI send: run((time(father(bob))), _).
+
+Utf8 Value: run((time(father(bob))), _).
+
+
+Receive: 
+{"args": [ [ [] ] ], "functor":"true"}
+
+Prolog Response:{"args": [ [ [] ] ], "functor":"true"}
+PrologMQI send: run((time(father(bob))), _).
+
+Utf8 Value: run((time(father(bob))), _).
+
+
+Receive: 
+{"args": [ [ [] ] ], "functor":"true"}
+
+Prolog Response:{"args": [ [ [] ] ], "functor":"true"}
+Prolog MQI launching swipl with args: --quiet -g mqi_start -t halt -- --write_connection_values=true
+Prolog MQI port: 59220
+Prolog MQI password: 223859802235332534707508634922589378332
+Entering PrologThread: 67994
+PrologMQI connecting to Prolog at: 127.0.0.1:59220
+
+PrologMQI received: true
+PrologMQI server protocol: mqi1_conn1_comm mqi1_conn1_goal
+PrologMQI server protocol: 1 0
+conn1_goal" ],
+	  "functor":"threads"
+	},
+	{"args": [1, 0 ], "functor":"version"}
+      ]
+    ]
+  ],
+  "functor":"true"
+}
+
+PrologMQI send: run((consult(test)), _).
+
+Utf8 Value: run((consult(test)), _).
+
+
+Receive: 
+{"args": [ [ [] ] ], "functor":"true"}
+
+Prolog Response:{"args": [ [ [] ] ], "functor":"true"}
+PrologMQI send: run((father(bob)), _).
+
+Utf8 Value: run((father(bob)), _).
+
+
+Receive: 
+{"args": [ [ [] ] ], "functor":"true"}
+
+Prolog Response:{"args": [ [ [] ] ], "functor":"true"}
+PrologMQI send: run((assertz(father(michael))), _).
+
+Utf8 Value: run((assertz(father(michael))), _).
+
+
+Receive: 
+{"args": [ [ [] ] ], "functor":"true"}
+
+Prolog Response:{"args": [ [ [] ] ], "functor":"true"}
+PrologMQI send: run((father(michael)), _).
+
+Utf8 Value: run((father(michael)), _).
+
+
+Receive: 
+{"args": [ [ [] ] ], "functor":"true"}
+
+Prolog Response:{"args": [ [ [] ] ], "functor":"true"}
+PrologMQI send: run((father(paul)), _).
+
+Utf8 Value: run((father(paul)), _).
+
+
+Receive: 
+"false"
+
+Prolog Response:false
+PrologMQI send: run_async((mother(X, Y)), _, false).
+
+Utf8 Value: run_async((mother(X, Y)), _, false).
+
+
+Receive: 
+{"args": [ [ [] ] ], "functor":"true"}
+
+Prolog Response:{"args": [ [ [] ] ], "functor":"true"}
+PrologMQI send: async_result(-1).
+
+Utf8 Value: async_result(-1).
+
+
+Receive: 
+{
+  "args": [
+    [
+      [
+	{"args": ["X", "bob" ], "functor":"="},
+	{"args": ["Y", "paul" ], "functor":"="}
+      ]
+    ]
+  ],
+  "functor":"true"
+}
+
+Prolog Response:{
+  "args": [
+    [
+      [
+	{"args": ["X", "bob" ], "functor":"="},
+	{"args": ["Y", "paul" ], "functor":"="}
+      ]
+    ]
+  ],
+  "functor":"true"
+}
+PrologMQI send: async_result(-1).
+
+Utf8 Value: async_result(-1).
+
+
+Receive: 
+{
+  "args": [
+    [
+      [
+	{"args": ["X", "kevin" ], "functor":"="},
+	{"args": ["Y", "thierry" ], "functor":"="}
+      ]
+    ]
+  ],
+  "functor":"true"
+}
+
+Prolog Response:{
+  "args": [
+    [
+      [
+	{"args": ["X", "kevin" ], "functor":"="},
+	{"args": ["Y", "thierry" ], "functor":"="}
+      ]
+    ]
+  ],
+  "functor":"true"
+}
+PrologMQI send: async_result(-1).
+
+Utf8 Value: async_result(-1).
+
+
+Receive: 
+{"args": ["no_more_results" ], "functor":"exception"}
+
+Prolog Response:{"args": ["no_more_results" ], "functor":"exception"}
+PrologMQI send: run_async((father(X)), _, false).
+
+Utf8 Value: run_async((father(X)), _, false).
+
+
+Receive: 
+{"args": [ [ [] ] ], "functor":"true"}
+
+Prolog Response:{"args": [ [ [] ] ], "functor":"true"}
+PrologMQI send: async_result(-1).
+
+Utf8 Value: async_result(-1).
+
+
+Receive: 
+{
+  "args": [ [ [ {"args": ["X", "bob" ], "functor":"="} ] ] ],
+  "functor":"true"
+}
+
+Prolog Response:{
+  "args": [ [ [ {"args": ["X", "bob" ], "functor":"="} ] ] ],
+  "functor":"true"
+}
+PrologMQI send: async_result(-1).
+
+Utf8 Value: async_result(-1).
+
+
+Receive: 
+{
+  "args": [ [ [ {"args": ["X", "michael" ], "functor":"="} ] ] ],
+  "functor":"true"
+}
+
+Prolog Response:{
+  "args": [ [ [ {"args": ["X", "michael" ], "functor":"="} ] ] ],
+  "functor":"true"
+}
+PrologMQI send: async_result(-1).
+
+Utf8 Value: async_result(-1).
+
+
+Receive: 
+{"args": ["no_more_results" ], "functor":"exception"}
+
+Prolog Response:{"args": ["no_more_results" ], "functor":"exception"}
+Entering PrologThread: 67994
+PrologMQI connecting to Prolog at: 127.0.0.1:59220
+
+PrologMQI received: true
+PrologMQI server protocol: mqi1_conn2_comm mqi1_conn2_goal
+PrologMQI server protocol: 1 0
+conn2_goal" ],
+	  "functor":"threads"
+	},
+	{"args": [1, 0 ], "functor":"version"}
+      ]
+    ]
+  ],
+  "functor":"true"
+}
+
+Entering PrologThread: 67994
+PrologMQI connecting to Prolog at: 127.0.0.1:59220
+
+PrologMQI received: true
+PrologMQI server protocol: mqi1_conn3_comm mqi1_conn3_goal
+PrologMQI server protocol: 1 0
+conn3_goal" ],
+	  "functor":"threads"
+	},
+	{"args": [1, 0 ], "functor":"version"}
+      ]
+    ]
+  ],
+  "functor":"true"
+}
+
+PrologMQI send: run_async((sleep(1), father(michael)), _, false).
+
+Utf8 Value: run_async((sleep(1), father(michael)), _, false).
+
+
+Receive: 
+{"args": [ [ [] ] ], "functor":"true"}
+
+Prolog Response:{"args": [ [ [] ] ], "functor":"true"}
+PrologMQI send: run_async((father(kevin)), _, false).
+
+Utf8 Value: run_async((father(kevin)), _, false).
+
+
+Receive: 
+{"args": [ [ [] ] ], "functor":"true"}
+
+Prolog Response:{"args": [ [ [] ] ], "functor":"true"}
+PrologMQI send: async_result(-1).
+
+Utf8 Value: async_result(-1).
+
+
+Receive: 
+"false"
+
+Prolog Response:false
+PrologMQI send: async_result(-1).
+
+Utf8 Value: async_result(-1).
+
+
+Receive: 
+{"args": [ [ [] ] ], "functor":"true"}
+
+Prolog Response:{"args": [ [ [] ] ], "functor":"true"}
+PrologMQI send: run((time(father(bob))), _).
+
+Utf8 Value: run((time(father(bob))), _).
+
+
+Receive: 
+{"args": [ [ [] ] ], "functor":"true"}
+
+Prolog Response:{"args": [ [ [] ] ], "functor":"true"}
+PrologMQI send: run((time(father(bob))), _).
+
+Utf8 Value: run((time(father(bob))), _).
+
+
+Receive: 
+{"args": [ [ [] ] ], "functor":"true"}
+
+Prolog Response:{"args": [ [ [] ] ], "functor":"true"}
+Prolog MQI launching swipl with args: --quiet -g mqi_start -t halt -- --write_connection_values=true
+Prolog MQI port: 59385
+Prolog MQI password: 207847412577677326784561761255127562193
+Entering PrologThread: 68354
+PrologMQI connecting to Prolog at: 127.0.0.1:59385
+
+PrologMQI received: true
+PrologMQI server protocol: mqi1_conn1_comm mqi1_conn1_goal
+PrologMQI server protocol: 1 0
+conn1_goal" ],
+	  "functor":"threads"
+	},
+	{"args": [1, 0 ], "functor":"version"}
+      ]
+    ]
+  ],
+  "functor":"true"
+}
+
+PrologMQI send: run((consult(test)), _).
+
+Utf8 Value: run((consult(test)), _).
+
+
+Receive: 
+{"args": [ [ [] ] ], "functor":"true"}
+
+Prolog Response:{"args": [ [ [] ] ], "functor":"true"}
+PrologMQI send: run((father(bob)), _).
+
+Utf8 Value: run((father(bob)), _).
+
+
+Receive: 
+{"args": [ [ [] ] ], "functor":"true"}
+
+Prolog Response:{"args": [ [ [] ] ], "functor":"true"}
+PrologMQI send: run((assertz(father(michael))), _).
+
+Utf8 Value: run((assertz(father(michael))), _).
+
+
+Receive: 
+{"args": [ [ [] ] ], "functor":"true"}
+
+Prolog Response:{"args": [ [ [] ] ], "functor":"true"}
+PrologMQI send: run((father(michael)), _).
+
+Utf8 Value: run((father(michael)), _).
+
+
+Receive: 
+{"args": [ [ [] ] ], "functor":"true"}
+
+Prolog Response:{"args": [ [ [] ] ], "functor":"true"}
+PrologMQI send: run((father(paul)), _).
+
+Utf8 Value: run((father(paul)), _).
+
+
+Receive: 
+"false"
+
+Prolog Response:false
+PrologMQI send: run_async((mother(X, Y)), _, false).
+
+Utf8 Value: run_async((mother(X, Y)), _, false).
+
+
+Receive: 
+{"args": [ [ [] ] ], "functor":"true"}
+
+Prolog Response:{"args": [ [ [] ] ], "functor":"true"}
+PrologMQI send: async_result(-1).
+
+Utf8 Value: async_result(-1).
+
+
+Receive: 
+{
+  "args": [
+    [
+      [
+	{"args": ["X", "bob" ], "functor":"="},
+	{"args": ["Y", "paul" ], "functor":"="}
+      ]
+    ]
+  ],
+  "functor":"true"
+}
+
+Prolog Response:{
+  "args": [
+    [
+      [
+	{"args": ["X", "bob" ], "functor":"="},
+	{"args": ["Y", "paul" ], "functor":"="}
+      ]
+    ]
+  ],
+  "functor":"true"
+}
+PrologMQI send: async_result(-1).
+
+Utf8 Value: async_result(-1).
+
+
+Receive: 
+{
+  "args": [
+    [
+      [
+	{"args": ["X", "kevin" ], "functor":"="},
+	{"args": ["Y", "thierry" ], "functor":"="}
+      ]
+    ]
+  ],
+  "functor":"true"
+}
+
+Prolog Response:{
+  "args": [
+    [
+      [
+	{"args": ["X", "kevin" ], "functor":"="},
+	{"args": ["Y", "thierry" ], "functor":"="}
+      ]
+    ]
+  ],
+  "functor":"true"
+}
+PrologMQI send: async_result(-1).
+
+Utf8 Value: async_result(-1).
+
+
+Receive: 
+{"args": ["no_more_results" ], "functor":"exception"}
+
+Prolog Response:{"args": ["no_more_results" ], "functor":"exception"}
+PrologMQI send: run_async((father(X)), _, false).
+
+Utf8 Value: run_async((father(X)), _, false).
+
+
+Receive: 
+{"args": [ [ [] ] ], "functor":"true"}
+
+Prolog Response:{"args": [ [ [] ] ], "functor":"true"}
+PrologMQI send: async_result(-1).
+
+Utf8 Value: async_result(-1).
+
+
+Receive: 
+{
+  "args": [ [ [ {"args": ["X", "bob" ], "functor":"="} ] ] ],
+  "functor":"true"
+}
+
+Prolog Response:{
+  "args": [ [ [ {"args": ["X", "bob" ], "functor":"="} ] ] ],
+  "functor":"true"
+}
+PrologMQI send: async_result(-1).
+
+Utf8 Value: async_result(-1).
+
+
+Receive: 
+{
+  "args": [ [ [ {"args": ["X", "michael" ], "functor":"="} ] ] ],
+  "functor":"true"
+}
+
+Prolog Response:{
+  "args": [ [ [ {"args": ["X", "michael" ], "functor":"="} ] ] ],
+  "functor":"true"
+}
+PrologMQI send: async_result(-1).
+
+Utf8 Value: async_result(-1).
+
+
+Receive: 
+{"args": ["no_more_results" ], "functor":"exception"}
+
+Prolog Response:{"args": ["no_more_results" ], "functor":"exception"}
+Entering PrologThread: 68354
+PrologMQI connecting to Prolog at: 127.0.0.1:59385
+
+PrologMQI received: true
+PrologMQI server protocol: mqi1_conn2_comm mqi1_conn2_goal
+PrologMQI server protocol: 1 0
+conn2_goal" ],
+	  "functor":"threads"
+	},
+	{"args": [1, 0 ], "functor":"version"}
+      ]
+    ]
+  ],
+  "functor":"true"
+}
+
+Entering PrologThread: 68354
+PrologMQI connecting to Prolog at: 127.0.0.1:59385
+
+PrologMQI received: true
+PrologMQI server protocol: mqi1_conn3_comm mqi1_conn3_goal
+PrologMQI server protocol: 1 0
+conn3_goal" ],
+	  "functor":"threads"
+	},
+	{"args": [1, 0 ], "functor":"version"}
+      ]
+    ]
+  ],
+  "functor":"true"
+}
+
+PrologMQI send: run_async((sleep(1), father(michael)), _, false).
+
+Utf8 Value: run_async((sleep(1), father(michael)), _, false).
+
+
+Receive: 
+{"args": [ [ [] ] ], "functor":"true"}
+
+Prolog Response:{"args": [ [ [] ] ], "functor":"true"}
+PrologMQI send: run_async((father(kevin)), _, false).
+
+Utf8 Value: run_async((father(kevin)), _, false).
+
+
+Receive: 
+{"args": [ [ [] ] ], "functor":"true"}
+
+Prolog Response:{"args": [ [ [] ] ], "functor":"true"}
+PrologMQI send: async_result(-1).
+
+Utf8 Value: async_result(-1).
+
+
+Receive: 
+"false"
+
+Prolog Response:false
+PrologMQI send: async_result(-1).
+
+Utf8 Value: async_result(-1).
+
+
+Receive: 
+{"args": [ [ [] ] ], "functor":"true"}
+
+Prolog Response:{"args": [ [ [] ] ], "functor":"true"}
+PrologMQI send: run((time(father(bob))), _).
+
+Utf8 Value: run((time(father(bob))), _).
+
+
+Receive: 
+{"args": [ [ [] ] ], "functor":"true"}
+
+Prolog Response:{"args": [ [ [] ] ], "functor":"true"}
+PrologMQI send: run((time(father(bob))), _).
+
+Utf8 Value: run((time(father(bob))), _).
+
+
+Receive: 
+{"args": [ [ [] ] ], "functor":"true"}
+
+Prolog Response:{"args": [ [ [] ] ], "functor":"true"}
+Prolog MQI launching swipl with args: --quiet -g mqi_start -t halt -- --write_connection_values=true
+Prolog MQI port: 60614
+Prolog MQI password: 39365689008757478651004405291182717048
+Entering PrologThread: 69222
+PrologMQI connecting to Prolog at: 127.0.0.1:60614
+
+PrologMQI received: true
+PrologMQI server protocol: mqi1_conn1_comm mqi1_conn1_goal
+PrologMQI server protocol: 1 0
+nn1_goal" ],
+	  "functor":"threads"
+	},
+	{"args": [1, 0 ], "functor":"version"}
+      ]
+    ]
+  ],
+  "functor":"true"
+}
+
+PrologMQI send: run((consult(test)), _).
+
+Utf8 Value: run((consult(test)), _).
+
+
+Receive: 
+{"args": [ [ [] ] ], "functor":"true"}
+
+Prolog Response:{"args": [ [ [] ] ], "functor":"true"}
+PrologMQI send: run((father(bob)), _).
+
+Utf8 Value: run((father(bob)), _).
+
+
+Receive: 
+{"args": [ [ [] ] ], "functor":"true"}
+
+Prolog Response:{"args": [ [ [] ] ], "functor":"true"}
+PrologMQI send: run((assertz(father(michael))), _).
+
+Utf8 Value: run((assertz(father(michael))), _).
+
+
+Receive: 
+{"args": [ [ [] ] ], "functor":"true"}
+
+Prolog Response:{"args": [ [ [] ] ], "functor":"true"}
+PrologMQI send: run((father(michael)), _).
+
+Utf8 Value: run((father(michael)), _).
+
+
+Receive: 
+{"args": [ [ [] ] ], "functor":"true"}
+
+Prolog Response:{"args": [ [ [] ] ], "functor":"true"}
+PrologMQI send: run((father(paul)), _).
+
+Utf8 Value: run((father(paul)), _).
+
+
+Receive: 
+"false"
+
+Prolog Response:false
+PrologMQI send: run_async((mother(X, Y)), _, false).
+
+Utf8 Value: run_async((mother(X, Y)), _, false).
+
+
+Receive: 
+{"args": [ [ [] ] ], "functor":"true"}
+
+Prolog Response:{"args": [ [ [] ] ], "functor":"true"}
+PrologMQI send: async_result(-1).
+
+Utf8 Value: async_result(-1).
+
+
+Receive: 
+{
+  "args": [
+    [
+      [
+	{"args": ["X", "bob" ], "functor":"="},
+	{"args": ["Y", "paul" ], "functor":"="}
+      ]
+    ]
+  ],
+  "functor":"true"
+}
+
+Prolog Response:{
+  "args": [
+    [
+      [
+	{"args": ["X", "bob" ], "functor":"="},
+	{"args": ["Y", "paul" ], "functor":"="}
+      ]
+    ]
+  ],
+  "functor":"true"
+}
+PrologMQI send: async_result(-1).
+
+Utf8 Value: async_result(-1).
+
+
+Receive: 
+{
+  "args": [
+    [
+      [
+	{"args": ["X", "kevin" ], "functor":"="},
+	{"args": ["Y", "thierry" ], "functor":"="}
+      ]
+    ]
+  ],
+  "functor":"true"
+}
+
+Prolog Response:{
+  "args": [
+    [
+      [
+	{"args": ["X", "kevin" ], "functor":"="},
+	{"args": ["Y", "thierry" ], "functor":"="}
+      ]
+    ]
+  ],
+  "functor":"true"
+}
+PrologMQI send: async_result(-1).
+
+Utf8 Value: async_result(-1).
+
+
+Receive: 
+{"args": ["no_more_results" ], "functor":"exception"}
+
+Prolog Response:{"args": ["no_more_results" ], "functor":"exception"}
+PrologMQI send: run_async((father(X)), _, false).
+
+Utf8 Value: run_async((father(X)), _, false).
+
+
+Receive: 
+{"args": [ [ [] ] ], "functor":"true"}
+
+Prolog Response:{"args": [ [ [] ] ], "functor":"true"}
+PrologMQI send: async_result(-1).
+
+Utf8 Value: async_result(-1).
+
+
+Receive: 
+{
+  "args": [ [ [ {"args": ["X", "bob" ], "functor":"="} ] ] ],
+  "functor":"true"
+}
+
+Prolog Response:{
+  "args": [ [ [ {"args": ["X", "bob" ], "functor":"="} ] ] ],
+  "functor":"true"
+}
+PrologMQI send: async_result(-1).
+
+Utf8 Value: async_result(-1).
+
+
+Receive: 
+{
+  "args": [ [ [ {"args": ["X", "michael" ], "functor":"="} ] ] ],
+  "functor":"true"
+}
+
+Prolog Response:{
+  "args": [ [ [ {"args": ["X", "michael" ], "functor":"="} ] ] ],
+  "functor":"true"
+}
+PrologMQI send: async_result(-1).
+
+Utf8 Value: async_result(-1).
+
+
+Receive: 
+{"args": ["no_more_results" ], "functor":"exception"}
+
+Prolog Response:{"args": ["no_more_results" ], "functor":"exception"}
+Entering PrologThread: 69222
+PrologMQI connecting to Prolog at: 127.0.0.1:60614
+
+PrologMQI received: true
+PrologMQI server protocol: mqi1_conn2_comm mqi1_conn2_goal
+PrologMQI server protocol: 1 0
+nn2_goal" ],
+	  "functor":"threads"
+	},
+	{"args": [1, 0 ], "functor":"version"}
+      ]
+    ]
+  ],
+  "functor":"true"
+}
+
+Entering PrologThread: 69222
+PrologMQI connecting to Prolog at: 127.0.0.1:60614
+
+PrologMQI received: true
+PrologMQI server protocol: mqi1_conn3_comm mqi1_conn3_goal
+PrologMQI server protocol: 1 0
+nn3_goal" ],
+	  "functor":"threads"
+	},
+	{"args": [1, 0 ], "functor":"version"}
+      ]
+    ]
+  ],
+  "functor":"true"
+}
+
+PrologMQI send: run_async((sleep(1), father(michael)), _, false).
+
+Utf8 Value: run_async((sleep(1), father(michael)), _, false).
+
+
+Receive: 
+{"args": [ [ [] ] ], "functor":"true"}
+
+Prolog Response:{"args": [ [ [] ] ], "functor":"true"}
+PrologMQI send: run_async((father(kevin)), _, false).
+
+Utf8 Value: run_async((father(kevin)), _, false).
+
+
+Receive: 
+{"args": [ [ [] ] ], "functor":"true"}
+
+Prolog Response:{"args": [ [ [] ] ], "functor":"true"}
+PrologMQI send: async_result(-1).
+
+Utf8 Value: async_result(-1).
+
+
+Receive: 
+"false"
+
+Prolog Response:false
+PrologMQI send: async_result(-1).
+
+Utf8 Value: async_result(-1).
+
+
+Receive: 
+{"args": [ [ [] ] ], "functor":"true"}
+
+Prolog Response:{"args": [ [ [] ] ], "functor":"true"}
+PrologMQI send: run((time(father(bob))), _).
+
+Utf8 Value: run((time(father(bob))), _).
+
+
+Receive: 
+{"args": [ [ [] ] ], "functor":"true"}
+
+Prolog Response:{"args": [ [ [] ] ], "functor":"true"}
+PrologMQI send: run((time(father(bob))), _).
+
+Utf8 Value: run((time(father(bob))), _).
+
+
+Receive: 
+{"args": [ [ [] ] ], "functor":"true"}
+
+Prolog Response:{"args": [ [ [] ] ], "functor":"true"}
