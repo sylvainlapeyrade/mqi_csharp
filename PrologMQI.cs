@@ -16,7 +16,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading;
 
-namespace PrologMachineQueryInterface
+namespace Prolog
 {
     /*class PrologError
     {
@@ -88,8 +88,7 @@ namespace PrologMachineQueryInterface
 
         public PrologMqi(bool launchMqi = true, int? port = null!, string password = null, string unixDomainSocket = null,
             float? queryTimeoutSeconds = null, int? pendingConnectionCount = null, string outputFileName = null,
-            string prologPath = null, string prologPathArgs = null, string mqiTraces = null
-            )
+            string prologPath = null, string prologPathArgs = null, string mqiTraces = null)
         {
             Port = port;
             Password = password;
@@ -113,7 +112,7 @@ namespace PrologMachineQueryInterface
             {
                 if (pid is PlatformID.Win32NT or PlatformID.Win32S or PlatformID.Win32Windows or PlatformID.WinCE)
                     throw new ArgumentException("Unix domain sockets are not supported on Windows");
-                else if (Port != null)
+                if (Port != null)
                     throw new ArgumentException("Must only provide one of: port or unix_domain_socket");
             }
 
@@ -131,6 +130,7 @@ namespace PrologMachineQueryInterface
             // using StreamWriter file = new("output.txt", append: true);
 
             var swiplPath = "swipl";
+            // var swiplPath = "/opt/homebrew/bin/swipl";
 
             if (_prologPath != null)
                 swiplPath = Path.Join(_prologPath, "swipl");
@@ -218,7 +218,7 @@ namespace PrologMachineQueryInterface
             var passwordString = _process.StandardOutput.ReadLine();
             if (passwordString == "")
                 throw new PrologLaunchError("no password found in stdout");
-            
+
             if (passwordString != null)
             {
                 Password = passwordString.Trim('\n');
@@ -270,7 +270,7 @@ namespace PrologMachineQueryInterface
 
             Start();
         }
-        
+
         private void Start()
         {
             // using StreamWriter file = new("output.txt", append: true);
@@ -329,7 +329,7 @@ namespace PrologMachineQueryInterface
 
             if (jsonResult.GetProperty("functor").ToString() != "true")
                 throw new PrologLaunchError($"Failed to accept password: {jsonResult}");
-            
+
             // _communicationThreadId = jsonResult.GetProperty("args")[0][0][0].GetProperty("args")[0].ToString();
             // _goalThreadId = jsonResult.GetProperty("args")[0][0][0].GetProperty("args")[1].ToString();
 
@@ -404,7 +404,7 @@ namespace PrologMachineQueryInterface
             var utf8Value = Encoding.UTF8.GetString(valueBytes);
 
             // file.WriteLine("Utf8 Value: " + utf8value);
-            
+
             var messageLen = _serverProtocolMajor == 0 ? value.Length : utf8Value.Length;
 
             var msgHeader = messageLen.ToString() + ".\n";
@@ -452,7 +452,7 @@ namespace PrologMachineQueryInterface
             value = value.Trim();
             value = value.Trim('\n');
 
-            var timeoutString = "_"; 
+            var timeoutString = "_";
             if (queryTimeoutSeconds is not null)
                 timeoutString = queryTimeoutSeconds.ToString();
 
@@ -523,43 +523,39 @@ namespace PrologMachineQueryInterface
 
             if (jsonResult.ToString() != "false" && jsonResult.GetProperty("functor").ToString() == "exception")
             {
-                if (jsonResult.GetProperty("args")[0].ToString() == "no_more_results") return null;
+                if (jsonResult.GetProperty("args")[0].ToString() == "no_more_results")
+                    return null;
                 if (jsonResult.GetProperty("args")[0].ToString() == "connection_failed")
                     _prologServer.ConnectionFailed = true;
                 // else if (!typeof(string).IsInstanceOfType(jsonResult.GetProperty("args")[0]))
-                else throw new PrologLaunchError(jsonResult.ToString());
+                // throw new PrologLaunchError(jsonResult.ToString());
 
-                switch (jsonResult.GetProperty("args")[0].ToString())
-                {
-                    case "connection_failed":
-                        throw new PrologConnectionFailedError(jsonResult.GetProperty("args")[0].ToString());
-                    case "time_limit_exceeded":
-                        throw new PrologQueryTimeoutError(jsonResult.GetProperty("args")[0].ToString());
-                    case "no_query":
-                        throw new PrologNoQueryError(jsonResult.GetProperty("args")[0].ToString());
-                    case "cancel_goal":
-                        throw new PrologQueryCancelledError(jsonResult.GetProperty("args")[0].ToString());
-                    case "result_not_available":
-                        throw new PrologResultNotAvailableError(jsonResult.GetProperty("args")[0].ToString());
-                }
+                if (jsonResult.GetProperty("args")[0].ToString() == "connection_failed")
+                    throw new PrologConnectionFailedError(jsonResult.GetProperty("args")[0].ToString());
+                if (jsonResult.GetProperty("args")[0].ToString() == "time_limit_exceeded")
+                    throw new PrologQueryTimeoutError(jsonResult.GetProperty("args")[0].ToString());
+                if (jsonResult.GetProperty("args")[0].ToString() == "no_query")
+                    throw new PrologNoQueryError(jsonResult.GetProperty("args")[0].ToString());
+                if (jsonResult.GetProperty("args")[0].ToString() == "cancel_goal")
+                    throw new PrologQueryCancelledError(jsonResult.GetProperty("args")[0].ToString());
+                if (jsonResult.GetProperty("args")[0].ToString() == "result_not_available")
+                    throw new PrologResultNotAvailableError(jsonResult.GetProperty("args")[0].ToString());
             }
             else
             {
                 if (jsonResult.ToString() == "false" || jsonResult.GetProperty("functor").ToString() == "false")
-                    return new List<string[]> { new [] {"false", "null" } };
+                    return new List<string[]> { new[] { "false", "null" } };
 
-                if (jsonResult.ToString() != "true" && jsonResult.GetProperty("functor").ToString() != "true")
-                    return answerList;
-                
                 for (var i = 0; i < jsonResult.GetProperty("args")[0].GetArrayLength(); i++)
                 {
                     if (jsonResult.GetProperty("args")[0][i].GetArrayLength() == 0)
-                        answerList.Add( new [] {"true", "null" } );
+                        answerList.Add(new[] { "true", "null" });
                     else
                     {
                         for (var j = 0; j < jsonResult.GetProperty("args")[0][i].GetArrayLength(); j++)
                         {
-                            answerList.Add(new []{
+                            answerList.Add(new[]
+                            {
                                 jsonResult.GetProperty("args")[0][i][j].GetProperty("args")[0].ToString(),
                                 jsonResult.GetProperty("args")[0][i][j].GetProperty("args")[1].ToString()
                             });
@@ -568,9 +564,7 @@ namespace PrologMachineQueryInterface
                 }
 
                 if (answerList.Count > 0 && answerList.ElementAt(0)[0] == "true")
-                    answerList.Add(new [] { "true", "null" });
-                else
-                    return answerList;
+                    answerList.Add(new[] { "true", "null" });
             }
             return answerList;
         }
@@ -604,7 +598,7 @@ namespace PrologMachineQueryInterface
         {
             if (IsPrologAtom(jsonTerm) || IsPrologVariable(jsonTerm))
                 return jsonTerm;
-            
+
             return jsonTerm.GetProperty("functor");
         }
 
@@ -684,7 +678,7 @@ namespace PrologMachineQueryInterface
             Console.WriteLine("\n\nTEST 2 : Query with one argument and multiple answers\n");
             Console.WriteLine("Query: father(X)\n");
             prologThread.QueryAsync("father(X)", false);
-            
+
             while (true)
             {
                 var test2Result = prologThread.QueryAsyncResult();
@@ -694,7 +688,7 @@ namespace PrologMachineQueryInterface
                     Console.WriteLine("No more results");
                     break;
                 }
-                
+
                 for (var i = 0; i < test2Result.Count; i++)
                 {
                     Console.WriteLine(test2Result.ElementAt(i)[0] + " = " + test2Result.ElementAt(i)[1]);
@@ -717,7 +711,7 @@ namespace PrologMachineQueryInterface
                     Console.WriteLine("No more results");
                     break;
                 }
-                
+
                 for (var i = 0; i < test3Result.Count; i++)
                 {
                     Console.WriteLine(test3Result.ElementAt(i)[0] + " = " + test3Result.ElementAt(i)[1]);
@@ -768,13 +762,12 @@ namespace PrologMachineQueryInterface
                     Console.WriteLine("No more results");
                     break;
                 }
-                
+
                 for (var i = 0; i < test6Result.Count; i++)
                 {
                     Console.WriteLine(test6Result.ElementAt(i)[0] + " = " + test6Result.ElementAt(i)[1]);
                 }
             }
-
         }
     }
 }

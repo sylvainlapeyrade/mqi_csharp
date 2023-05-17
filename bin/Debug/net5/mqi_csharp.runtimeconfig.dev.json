@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "/Users/sylva/.dotnet/store/|arch|/|tfm|",
+      "/Users/sylva/.nuget/packages"
+    ]
+  }
+}

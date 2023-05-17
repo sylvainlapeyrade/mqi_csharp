@@ -1,0 +1,15 @@
+/Users/sylva/Documents/CSharp/mqi_csharp/obj/Debug/net6.0/mqi_csharp.csproj.AssemblyReference.cache
+/Users/sylva/Documents/CSharp/mqi_csharp/obj/Debug/net6.0/mqi_csharp.GeneratedMSBuildEditorConfig.editorconfig
+/Users/sylva/Documents/CSharp/mqi_csharp/obj/Debug/net6.0/mqi_csharp.AssemblyInfoInputs.cache
+/Users/sylva/Documents/CSharp/mqi_csharp/obj/Debug/net6.0/mqi_csharp.AssemblyInfo.cs
+/Users/sylva/Documents/CSharp/mqi_csharp/obj/Debug/net6.0/mqi_csharp.csproj.CoreCompileInputs.cache
+/Users/sylva/Documents/CSharp/mqi_csharp/obj/Debug/net6.0/mqi_csharp.genruntimeconfig.cache
+/Users/sylva/Documents/CSharp/mqi_csharp/bin/Debug/net6.0/mqi_csharp
+/Users/sylva/Documents/CSharp/mqi_csharp/bin/Debug/net6.0/mqi_csharp.deps.json
+/Users/sylva/Documents/CSharp/mqi_csharp/bin/Debug/net6.0/mqi_csharp.runtimeconfig.json
+/Users/sylva/Documents/CSharp/mqi_csharp/bin/Debug/net6.0/mqi_csharp.dll
+/Users/sylva/Documents/CSharp/mqi_csharp/bin/Debug/net6.0/mqi_csharp.pdb
+/Users/sylva/Documents/CSharp/mqi_csharp/obj/Debug/net6.0/mqi_csharp.dll
+/Users/sylva/Documents/CSharp/mqi_csharp/obj/Debug/net6.0/refint/mqi_csharp.dll
+/Users/sylva/Documents/CSharp/mqi_csharp/obj/Debug/net6.0/mqi_csharp.pdb
+/Users/sylva/Documents/CSharp/mqi_csharp/obj/Debug/net6.0/ref/mqi_csharp.dll

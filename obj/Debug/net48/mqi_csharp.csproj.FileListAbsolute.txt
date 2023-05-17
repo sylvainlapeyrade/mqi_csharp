@@ -1,0 +1,5 @@
+/Users/sylva/Documents/CSharp/mqi_csharp/obj/Debug/net48/mqi_csharp.csproj.SuggestedBindingRedirects.cache
+/Users/sylva/Documents/CSharp/mqi_csharp/obj/Debug/net48/mqi_csharp.GeneratedMSBuildEditorConfig.editorconfig
+/Users/sylva/Documents/CSharp/mqi_csharp/obj/Debug/net48/mqi_csharp.AssemblyInfoInputs.cache
+/Users/sylva/Documents/CSharp/mqi_csharp/obj/Debug/net48/mqi_csharp.AssemblyInfo.cs
+/Users/sylva/Documents/CSharp/mqi_csharp/obj/Debug/net48/mqi_csharp.csproj.CoreCompileInputs.cache
