@@ -4,15 +4,15 @@ Early work of a C# adaptation of the [Machine Query Interface Python client](htt
 The code functions for my specific use case, but please note that it is not optimized and comes without any guarantees or warranties
 
 ## Requirements
-- [Dotnet](https://dotnet.microsoft.com/en-us/download)
+- [.NET](https://dotnet.microsoft.com/en-us/download)
 - [Swi-Prolog](https://www.swi-prolog.org/download/stable)
 - [The MQI SWI-Prolog package](https://github.com/SWI-Prolog/packages-mqi)
 
 Has been tested with:
-- Windows 11 Pro 64 bit + SWI-Prolog 8.4.3 + .net Version 6/7
-- MacOS Monterey (Silicon) + SWI-Prolog 8.4.3 + .net Version 6/7
+- Windows 11 Pro + SWI-Prolog 9.0.4 + .NET Version 6/7
+- MacOS Sillicon Sonoma + SWI-Prolog 9.0.4 + .NET Version 6/7
 
-But should also work with previous recent versions and on Linux.
+But should also work on Linux and with some earlier and more recent versions of .NET and SWI-Prolog.
 
 ## Getting started with command line
 ```
@@ -21,4 +21,4 @@ cd mqi_csharp
 dotnet run
 ```
 
-To use a .NET version other than 7, modify the "TargetFramework" field in the .csproj file to match your .NET runtime version.
+To use a .NET version other than 7, modify the "TargetFramework" field in the [PrologMachineQueryInterface.csproj](PrologMachineQueryInterface.csproj) file to match your .NET runtime version.
