@@ -126,8 +126,8 @@ namespace Prolog
         public void Start()
         {
             if (!_launchMqi) return;
-            // File.WriteAllText("output.txt", string.Empty); // Clear output file
-            // using StreamWriter file = new("output.txt", append: true);
+            // File.WriteAllText("test/output.txt", string.Empty); // Clear output file
+            // using StreamWriter file = new("test/output.txt", append: true);
 
             var swiplPath = "swipl";
             // var swiplPath = "/opt/homebrew/bin/swipl";
@@ -273,7 +273,7 @@ namespace Prolog
 
         private void Start()
         {
-            // using StreamWriter file = new("output.txt", append: true);
+            // using StreamWriter file = new("test/output.txt", append: true);
 
             // file.WriteLine("Entering PrologThread: " + _prolog_server.process_id());
 
@@ -371,7 +371,7 @@ namespace Prolog
 
         private string Receive()
         {
-            // using StreamWriter file = new("output.txt", append: true);
+            // using StreamWriter file = new("test/output.txt", append: true);
 
             var buffer = new byte[4096];
 
@@ -391,7 +391,7 @@ namespace Prolog
 
         private void Send(string value)
         {
-            // using StreamWriter file = new("output.txt", append: true);
+            // using StreamWriter file = new("test/output.txt", append: true);
 
             value = value.Trim();
             value = value.Trim('\n');
@@ -486,7 +486,7 @@ namespace Prolog
 
         public List<string[]> QueryAsyncResult(float? waitTimeoutSeconds = null)
         {
-            // StreamWriter file = new("output.txt", append: true);
+            // StreamWriter file = new("test/output.txt", append: true);
 
             var timeoutString = waitTimeoutSeconds.ToString();
             if (waitTimeoutSeconds is null)
@@ -508,7 +508,7 @@ namespace Prolog
 
         private List<string[]> ReturnPrologResponse()
         {
-            // using StreamWriter file = new("output.txt", append: true);
+            // using StreamWriter file = new("test/output.txt", append: true);
             var result = Receive();
 
             // file.WriteLine("\nReceive: " + result);
@@ -656,8 +656,8 @@ namespace Prolog
             TEST 0 : Test of the consult command to use a prolog file 
             *************************************************************************/
             Console.WriteLine("TEST 0 : Consult command and query after consult\n");
-            Console.WriteLine("Query: consult(test).");
-            Console.WriteLine(prologThread.Query("consult(test)").ElementAt(0)[0]);
+            Console.WriteLine("Query: consult(test/example).");
+            Console.WriteLine(prologThread.Query("consult(test/example)").ElementAt(0)[0]);
             Console.WriteLine("Query: father(bob).");
             Console.WriteLine(prologThread.Query("father(bob)").ElementAt(0)[0]);
 
