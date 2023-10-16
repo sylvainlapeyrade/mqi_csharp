@@ -2,9 +2,9 @@
 Early work of a C# adaptation of the [Machine Query Interface Python client](https://github.com/SWI-Prolog/packages-mqi/tree/master/python).
 
 ## Requirements
-- Prolog with [MQI installed](https://github.com/SWI-Prolog/packages-mqi)
-- Dotnet
-- Swi-Prolog
+- [Dotnet](https://dotnet.microsoft.com/en-us/download)
+- [Swi-Prolog](https://www.swi-prolog.org/download/stable)
+- [The MQI SWI-Prolog package](https://github.com/SWI-Prolog/packages-mqi)
 
 Has been tested with:
 - Windows 11 Pro 64 bit + SWI-Prolog 8.4.3 + .net Version 6
@@ -19,4 +19,4 @@ cd mqi_csharp
 dotnet run
 ```
 
-To use a dotnet version other than version 6, edit the "TargetFramework" field in the .csproj file with your dotnet runtime version. 
+To use a .NET version other than 7, modify the "TargetFramework" field in the .csproj file to match your .NET runtime version.
