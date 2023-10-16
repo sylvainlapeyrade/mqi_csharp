@@ -1,5 +1,0 @@
-/Users/sylva/Documents/CSharp/mqi_csharp/obj/Debug/netstandard2.1/mqi_csharp.csproj.AssemblyReference.cache
-/Users/sylva/Documents/CSharp/mqi_csharp/obj/Debug/netstandard2.1/mqi_csharp.GeneratedMSBuildEditorConfig.editorconfig
-/Users/sylva/Documents/CSharp/mqi_csharp/obj/Debug/netstandard2.1/mqi_csharp.AssemblyInfoInputs.cache
-/Users/sylva/Documents/CSharp/mqi_csharp/obj/Debug/netstandard2.1/mqi_csharp.AssemblyInfo.cs
-/Users/sylva/Documents/CSharp/mqi_csharp/obj/Debug/netstandard2.1/mqi_csharp.csproj.CoreCompileInputs.cache

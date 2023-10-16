@@ -1,6 +1,0 @@
-Prolog MQI launching swipl with args: --quiet -g mqi_start -t halt -- --write_connection_values=true
-Prolog MQI port: 51900
-Prolog MQI password: 72004512294003709064073751071666406384
-Entering PrologThread: 38212
-
-PrologMQI received: true
